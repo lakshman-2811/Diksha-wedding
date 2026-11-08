@@ -19,7 +19,29 @@ export default function App() {
 
   useEffect(() => { document.body.style.overflow = activeImage !== null || videoOpen ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [activeImage, videoOpen]);
   useEffect(() => { if (activeImage === null) return; const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setActiveImage(null); if (event.key === 'ArrowRight') setActiveImage(i => i === null ? null : (i + 1) % wedding.gallery.length); if (event.key === 'ArrowLeft') setActiveImage(i => i === null ? null : (i - 1 + wedding.gallery.length) % wedding.gallery.length); }; window.addEventListener('keydown', onKey); return () => window.removeEventListener('keydown', onKey); }, [activeImage]);
+  useEffect(() => {
+    const audio = document.getElementById(
+        'background-audio'
+    ) as HTMLAudioElement | null;
 
+    if (!audio) return;
+
+    audio.volume = 0.5;
+
+    const tryPlay = () => {
+      audio.play().catch(() => {
+        // Browser may block autoplay until visitor interacts.
+      });
+    };
+
+    tryPlay();
+
+    document.addEventListener('pointerdown', tryPlay, { once: true });
+
+    return () => {
+      document.removeEventListener('pointerdown', tryPlay);
+    };
+  }, []);
   const goTo = (id: string) => { setMenuOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); };
   const toggleMusic = async () => {
     const audio = document.getElementById('background-audio') as HTMLAudioElement | null;
@@ -35,7 +57,15 @@ export default function App() {
   const embedSrc = wedding.video.type === 'youtube' ? `https://www.youtube-nocookie.com/embed/${videoSrc}?autoplay=1&rel=0` : wedding.video.type === 'vimeo' ? `https://player.vimeo.com/video/${videoSrc}?autoplay=1` : null;
 
   return <>
-    <audio id="background-audio" src={wedding.music.src} loop preload="none" onError={() => setMusicOn(false)} />
+    <audio
+        id="background-audio"
+        src={wedding.music.src}
+        loop
+        preload="auto"
+        onPlay={() => setMusicOn(true)}
+        onPause={() => setMusicOn(false)}
+        onError={() => setMusicOn(false)}
+    />
     <header className="site-header">
       <button className="monogram" onClick={() => goTo('home')} aria-label="Back to top">{wedding.bride.charAt(0)}<i>&</i>{wedding.groom.charAt(0)}</button>
       <nav className={menuOpen ? 'nav-open' : ''} aria-label="Main navigation"><button onClick={() => goTo('story')}>Our story</button><button onClick={() => goTo('gallery')}>Moments</button><button onClick={() => goTo('details')}>The celebration</button></nav>
