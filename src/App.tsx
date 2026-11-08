@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import WeddingCarousel from './components/WeddingCarousel';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, X, Volume2, VolumeX, Play, Menu } from 'lucide-react';
 import { wedding } from './config';
@@ -65,16 +66,39 @@ export default function App() {
       <section className="count-section section-pad"><div className="count-bg-mark">02</div><Countdown /></section>
 
       <section className="story-section section-pad" id="story">
-        <div className="story-top"><Reveal><SectionHeading kicker="A LITTLE BIT OF MAGIC" title="The story of" italic="us."/><p className="story-intro">A thousand little moments led us here. These are a few of the ones we hold closest.</p></Reveal><Reveal delay={0.15}><img className="story-main-image" src="/assets/gallery2.jpg" alt="Illustrated placeholder for a couple's story photograph" loading="lazy"/><span className="image-caption">THE BEGINNING OF ALWAYS</span></Reveal></div>
+        <div className="story-top"><Reveal><SectionHeading kicker="A LITTLE BIT OF MAGIC" title="The story of" italic="us."/><p className="story-intro">A thousand little moments led us here. These are a few of the ones we hold closest.</p></Reveal><Reveal delay={0.15}><img className="story-main-image" src="/assets/gallery12.jpg" alt="Illustrated placeholder for a couple's story photograph" loading="lazy"/><span className="image-caption">THE BEGINNING OF ALWAYS</span></Reveal></div>
         <div className="timeline">
           {[{ year: 'THE FIRST HELLO', title: 'A chance encounter', text: 'Somewhere between an ordinary day and an unexpected smile, our story found its first page.', side: 'left' }, { year: 'THE LITTLE THINGS', title: 'Falling into forever', text: 'In shared laughter, long conversations and all the quiet in-between, we found our favourite place: together.', side: 'right' }, { year: 'THE PROMISE', title: 'A beautiful yes', text: 'One promise, two families, and a lifetime of tomorrows waiting to unfold.', side: 'left' }].map((item, i) => <Reveal key={item.year} className={`timeline-item ${item.side}`} delay={i * 0.08}><span className="timeline-dot"/><p className="eyebrow">{item.year}</p><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}
         </div>
       </section>
 
+      {/*<section className="gallery-section section-pad" id="gallery">*/}
+      {/*  <Reveal><SectionHeading kicker="FRAMES WE'LL KEEP FOREVER" title="A collection of" italic="moments."/><p className="gallery-sub">A glimpse into the little world we’ve made together.</p></Reveal>*/}
+      {/*  <div className="gallery-grid">{wedding.gallery.map((item, index) => <Reveal key={item.src} delay={(index % 3) * 0.07} className={`gallery-item ${item.shape}`}><button onClick={() => setActiveImage(index)} aria-label={`Open photograph: ${item.alt}`}><img src={item.src} alt={item.alt} loading="lazy"/><span className="gallery-index">0{index + 1}</span><span className="gallery-open"><ArrowUpRight size={18}/></span></button></Reveal>)}</div>*/}
+      {/*</section>*/}
+
+
       <section className="gallery-section section-pad" id="gallery">
-        <Reveal><SectionHeading kicker="FRAMES WE'LL KEEP FOREVER" title="A collection of" italic="moments."/><p className="gallery-sub">A glimpse into the little world we’ve made together.</p></Reveal>
-        <div className="gallery-grid">{wedding.gallery.map((item, index) => <Reveal key={item.src} delay={(index % 3) * 0.07} className={`gallery-item ${item.shape}`}><button onClick={() => setActiveImage(index)} aria-label={`Open photograph: ${item.alt}`}><img src={item.src} alt={item.alt} loading="lazy"/><span className="gallery-index">0{index + 1}</span><span className="gallery-open"><ArrowUpRight size={18}/></span></button></Reveal>)}</div>
+        <Reveal>
+          <SectionHeading
+              kicker="FRAMES WE'LL KEEP FOREVER"
+              title="A collection of"
+              italic="moments."
+          />
+
+          <p className="gallery-sub">
+            A glimpse into the little world we've made together.
+          </p>
+        </Reveal>
+
+        <Reveal delay={0.15}>
+          <WeddingCarousel
+              images={wedding.gallery}
+              onSelect={(index) => setActiveImage(index)}
+          />
+        </Reveal>
       </section>
+
 
       <section className="film-section">
         <div className="film-art" style={{ backgroundImage: `url(${wedding.video.poster})` }} />

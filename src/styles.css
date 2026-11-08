@@ -6,3 +6,257 @@
 @media(max-width:760px){.site-header{height:65px;padding:0 22px}.site-header nav{display:none;position:absolute;top:65px;left:0;right:0;padding:25px;background:#3c352d;flex-direction:column;gap:24px;text-align:center}.site-header nav.nav-open{display:flex}.site-header nav button{padding:7px}.music-toggle{margin-left:auto;margin-right:20px}.menu-toggle{display:block;padding:5px}.hero{min-height:680px;height:94svh}.hero-frame{inset:13px}.hero h1{font-size:clamp(55px,14vw,90px);letter-spacing:-2px}.hero-overline{font-size:8px;letter-spacing:2px}.hero-side-note{right:22px;font-size:7px}.hero-bottom{bottom:30px}.hero-ornament{right:9%;bottom:18px}.section-pad{padding:88px 25px}.intro{padding-top:110px;padding-bottom:105px}.intro h2,.section-heading h2{font-size:48px}.count-section{padding-top:75px;padding-bottom:75px}.countdown-grid{gap:clamp(12px,5vw,30px)}.count-unit{min-width:54px}.count-number{font-size:42px}.count-label{font-size:8px;letter-spacing:1px}.count-note{font-size:8px;letter-spacing:1.3px}.story-top{grid-template-columns:1fr;gap:42px}.story-main-image{height:300px}.story-intro{margin-top:20px}.timeline{margin-top:85px;grid-template-columns:1fr;gap:45px;padding-left:28px}.timeline:before{left:5px}.timeline-item.left,.timeline-item.right,.timeline-item:nth-child(3){grid-column:1;grid-row:auto;text-align:left}.timeline-item.left .timeline-dot,.timeline-item.right .timeline-dot{left:-27px;right:auto}.timeline-item.left>p:last-child{margin-left:0}.timeline-item>p:last-child{max-width:420px}.gallery-section{padding-top:90px;padding-bottom:95px}.gallery-grid{grid-template-columns:repeat(2,1fr);grid-auto-rows:140px;gap:10px;margin-top:38px}.gallery-item.wide{grid-column:span 2}.gallery-item.tall{grid-row:span 2}.film-section{height:500px}.details-layout{grid-template-columns:1fr;margin:55px auto}.details-date{border-right:0;border-bottom:1px solid var(--line);padding:30px}.details-date strong{font-size:125px}.details-info{padding:32px 8%}.closing-section{min-height:560px;padding:80px 25px}.closing-bottom{left:22px;right:22px;font-size:7px;letter-spacing:1px}.lightbox img{max-width:88vw;max-height:72vh}.lightbox-arrow{width:36px;height:36px}.lightbox-arrow.prev{left:12px}.lightbox-arrow.next{right:12px}}
 @media(max-width:390px){.music-toggle span{display:none}.hero h1{font-size:54px}.countdown-grid{gap:8px}.count-unit{min-width:48px}.count-number{font-size:36px}.gallery-grid{grid-auto-rows:115px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+
+/* =========================================
+   CINEMATIC WEDDING PHOTO CAROUSEL
+   ========================================= */
+
+.gallery-section {
+    background: #080808;
+    color: #f4efe6;
+    padding-top: 125px;
+    padding-bottom: 100px;
+    overflow: hidden;
+}
+
+.gallery-section .section-heading,
+.gallery-section .gallery-sub {
+    max-width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.gallery-section .section-heading h2 {
+    color: #f4efe6;
+}
+
+.gallery-section .section-heading h2 em {
+    color: #bd9862;
+}
+
+.gallery-section .section-heading .eyebrow {
+    color: #bd9862;
+}
+
+.gallery-section .heading-rule {
+    background: #bd9862;
+}
+
+.gallery-section .gallery-sub {
+    color: #aaa39a;
+    margin-top: 16px;
+}
+
+.wedding-carousel {
+    width: 100%;
+    max-width: 1200px;
+    margin: 55px auto 0;
+    position: relative;
+}
+
+.carousel-stage {
+    height: 485px;
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    touch-action: pan-y;
+    user-select: none;
+}
+
+.carousel-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: clamp(210px, 23vw, 280px);
+    height: clamp(310px, 36vw, 390px);
+    padding: 0;
+    border: 1px solid rgba(255,255,255,.12);
+    border-radius: 9px;
+    overflow: hidden;
+    background: #191919;
+    cursor: pointer;
+    transform-origin: center center;
+    box-shadow: 0 18px 55px rgba(0,0,0,.5);
+    margin-left: calc(clamp(210px, 23vw, 280px) / -2);
+    margin-top: calc(clamp(310px, 36vw, 390px) / -2);
+    -webkit-tap-highlight-color: transparent;
+}
+
+.carousel-card.is-active {
+    cursor: zoom-in;
+    box-shadow: 0 25px 75px rgba(0,0,0,.65);
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center;
+    pointer-events: none;
+    transition: filter .5s ease;
+}
+
+.carousel-card:not(.is-active) img {
+    filter: brightness(.82) saturate(.85);
+}
+
+.carousel-card.is-active img {
+    filter: brightness(1) saturate(1);
+}
+
+.carousel-card-number {
+    position: absolute;
+    left: 17px;
+    bottom: 16px;
+    color: white;
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(0,0,0,.8);
+}
+
+.carousel-expand {
+    position: absolute;
+    right: 15px;
+    bottom: 13px;
+    width: 34px;
+    height: 34px;
+    border: 1px solid rgba(255,255,255,.7);
+    border-radius: 50%;
+    color: white;
+    display: grid;
+    place-items: center;
+    background: rgba(0,0,0,.18);
+    backdrop-filter: blur(5px);
+    opacity: .85;
+}
+
+.carousel-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 35px;
+    margin-top: 15px;
+}
+
+.carousel-arrow {
+    width: 43px;
+    height: 43px;
+    display: grid;
+    place-items: center;
+    border: 1px solid rgba(189,152,98,.55);
+    border-radius: 50%;
+    background: transparent;
+    color: #d1b17e;
+    cursor: pointer;
+    transition: background .25s ease, color .25s ease,
+    transform .25s ease;
+}
+
+.carousel-arrow:hover {
+    background: #bd9862;
+    color: #080808;
+    transform: scale(1.08);
+}
+
+.carousel-counter {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    color: #f4efe6;
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-variant-numeric: tabular-nums;
+}
+
+.carousel-counter span:last-child {
+    color: #77716a;
+}
+
+.carousel-counter i {
+    width: 28px;
+    height: 1px;
+    background: #bd9862;
+}
+
+.carousel-hint {
+    color: #77716a;
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 2px;
+    margin-top: 23px;
+}
+
+.carousel-empty {
+    color: #aaa39a;
+    text-align: center;
+    padding: 50px 0;
+}
+
+/* Tablet */
+
+@media (max-width: 760px) {
+    .gallery-section {
+        padding-top: 90px;
+        padding-bottom: 85px;
+    }
+
+    .wedding-carousel {
+        margin-top: 38px;
+    }
+
+    .carousel-stage {
+        height: 400px;
+    }
+
+    .carousel-card {
+        width: 190px;
+        height: 310px;
+        margin-left: -95px;
+        margin-top: -155px;
+        border-radius: 8px;
+    }
+
+    .carousel-controls {
+        gap: 25px;
+        margin-top: 12px;
+    }
+
+    .carousel-arrow {
+        width: 39px;
+        height: 39px;
+    }
+}
+
+/* Small mobile */
+
+@media (max-width: 390px) {
+    .carousel-stage {
+        height: 350px;
+    }
+
+    .carousel-card {
+        width: 170px;
+        height: 275px;
+        margin-left: -85px;
+        margin-top: -137.5px;
+    }
+
+    .carousel-hint {
+        font-size: 7px;
+        letter-spacing: 1.4px;
+    }
+}
+
+/* Accessibility */
+
+@media (prefers-reduced-motion: reduce) {
+    .carousel-card img,
+    .carousel-arrow {
+        transition: none;
+    }
+}
