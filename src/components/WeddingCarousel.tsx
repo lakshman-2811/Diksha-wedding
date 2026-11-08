@@ -1,10 +1,13 @@
 
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState, type PointerEvent } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Maximize2 } from 'lucide-react';
-import { wedding } from '../config';
 
-type GalleryImage = (typeof wedding.gallery)[number];
+type GalleryImage = {
+    src: string;
+    alt: string;
+    shape: string;
+};
 
 interface WeddingCarouselProps {
     images: GalleryImage[];
@@ -24,8 +27,25 @@ export default function WeddingCarousel({
     const moved = useRef(false);
     const reduceMotion = useReducedMotion();
 
+    // Update spacing when the screen size changes
+    useEffect(() => {
+        const updateStep = () => {
+            setStep(window.innerWidth <= 760 ? 125 : 225);
+        };
+
+        window.addEventListener('resize', updateStep);
+
+        return () => {
+            window.removeEventListener('resize', updateStep);
+        };
+    }, []);
+
     if (!images.length) {
-        return <p className="carousel-empty">Our favourite moments will appear here.</p>;
+        return (
+            <p className="carousel-empty">
+                Our favourite moments will appear here.
+            </p>
+        );
     }
 
     const getOffset = (index: number) => {
@@ -49,20 +69,24 @@ export default function WeddingCarousel({
         );
     };
 
-    const handlePointerDown = (event: React.PointerEvent<HTMLDivElement>) => {
+    const handlePointerDown = (event: PointerEvent<HTMLDivElement>) => {
         startX.current = event.clientX;
         moved.current = false;
     };
 
-    const handlePointerUp = (event: React.PointerEvent<HTMLDivElement>) => {
+    const handlePointerUp = (event: PointerEvent<HTMLDivElement>) => {
         if (startX.current === null) return;
 
         const difference = event.clientX - startX.current;
 
         if (Math.abs(difference) > 45) {
             moved.current = true;
-            if (difference < 0) next();
-            else previous();
+
+            if (difference < 0) {
+                next();
+            } else {
+                previous();
+            }
         }
 
         startX.current = null;
@@ -94,10 +118,10 @@ export default function WeddingCarousel({
                             className={`carousel-card ${isActive ? 'is-active' : ''}`}
                             animate={{
                                 x: offset * step,
-                                y: distance === 0 ? 0 : distance * 17,
+                                y: distance * 17,
                                 rotate: offset * -11,
                                 scale: 1 - distance * 0.12,
-                                opacity: distance > 2 ? 0 : 1,
+                                opacity: 1,
                             }}
                             transition={
                                 reduceMotion
@@ -135,7 +159,7 @@ export default function WeddingCarousel({
                             <img
                                 src={image.src}
                                 alt={image.alt}
-                                style={{ objectPosition: image.position ?? '50% 50%' }}
+                                style={{ objectPosition: 'center' }}
                                 loading="lazy"
                                 decoding="async"
                                 draggable={false}
