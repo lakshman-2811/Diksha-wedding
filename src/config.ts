@@ -26,6 +26,6 @@ export const wedding = {
     { src: '/assets/gallery12.jpg', alt: 'A joyful moment', shape: 'square' },
     { src: '/assets/gallery13.jpg', alt: 'A joyful moment', shape: 'square' },
   ],
-  video: { type: 'local' as 'local' | 'youtube' | 'vimeo', src: '/assets/video-poster.mp4', poster: '/assets/video-poster.jpg' },
+  video: { type: 'local' as 'local' | 'youtube' | 'vimeo', src: '/assets/video-poster.mp4', poster: '/assets/Golden Sunset Wedding Film Poster.jpg' },
   music: { src: '/assets/our-song.mp3', label: 'Our song' },
 };
