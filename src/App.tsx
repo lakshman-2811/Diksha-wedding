@@ -209,7 +209,7 @@ export default function App() {
       <section className="closing-section section-pad"><div className="closing-inner"><Ornament/><p className="eyebrow">UNTIL WE MEET ON THE DANCE FLOOR</p><h2>{wedding.closingMessage}</h2><div className="closing-names">{wedding.bride} <i>&</i> {wedding.groom}</div><p className="closing-date">{dateStamp.replace(' — ', ' · ')}</p></div><div className="closing-bottom"><span>MADE WITH LOVE</span><span>THE BEGINNING OF FOREVER <i>✳</i></span></div></section>
       <div className="creator-credit">
         <span>Designed & Developed with ♥ by</span>
-        <strong>Lakshman Dontagani</strong>
+        <strong>Varshita Srivastava</strong>
         <span>© {new Date().getFullYear()} All Rights Reserved</span>
       </div>
     </main>
