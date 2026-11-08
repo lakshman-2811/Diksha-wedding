@@ -105,7 +105,7 @@ export default function App() {
             <div className="story-photo-frame">
               <img
                   className="story-main-image"
-                  src={wedding.storyImage}
+                  src={wedding.gallery[0].src}
                   alt={`Wedding photograph of ${wedding.bride} and ${wedding.groom}`}
                   loading="lazy"
                   decoding="async"
