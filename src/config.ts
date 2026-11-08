@@ -19,6 +19,6 @@ export const wedding = {
     { src: '/assets/gallery-5.jpg', alt: 'A golden-hour memory', shape: 'wide' },
     { src: '/assets/gallery-6.jpg', alt: 'A joyful moment', shape: 'square' },
   ],
-  video: { type: 'local' as 'local' | 'youtube' | 'vimeo', src: '/assets/wedding-film.mp4', poster: '/assets/video-poster.mp4' },
+  // video: { type: 'local' as 'local' | 'youtube' | 'vimeo', src: '/assets/wedding-film.mp4', poster: '/assets/video-poster.mp4' },
   music: { src: '/assets/our-song.mp3', label: 'Our song' },
 };
