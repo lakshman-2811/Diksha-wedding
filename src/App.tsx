@@ -65,12 +65,107 @@ export default function App() {
 
       <section className="count-section section-pad"><div className="count-bg-mark">02</div><Countdown /></section>
 
+      {/*<section className="story-section section-pad" id="story">*/}
+      {/*  <div className="story-top"><Reveal><SectionHeading kicker="A LITTLE BIT OF MAGIC" title="The story of" italic="us."/><p className="story-intro">A thousand little moments led us here. These are a few of the ones we hold closest.</p></Reveal><Reveal delay={0.15}><img className="story-main-image" src="/assets/gallery12.jpg" alt="Illustrated placeholder for a couple's story photograph" loading="lazy"/><span className="image-caption">THE BEGINNING OF ALWAYS</span></Reveal></div>*/}
+      {/*  <div className="timeline">*/}
+      {/*    {[{ year: 'THE FIRST HELLO', title: 'A chance encounter', text: 'Somewhere between an ordinary day and an unexpected smile, our story found its first page.', side: 'left' }, { year: 'THE LITTLE THINGS', title: 'Falling into forever', text: 'In shared laughter, long conversations and all the quiet in-between, we found our favourite place: together.', side: 'right' }, { year: 'THE PROMISE', title: 'A beautiful yes', text: 'One promise, two families, and a lifetime of tomorrows waiting to unfold.', side: 'left' }].map((item, i) => <Reveal key={item.year} className={`timeline-item ${item.side}`} delay={i * 0.08}><span className="timeline-dot"/><p className="eyebrow">{item.year}</p><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}*/}
+      {/*  </div>*/}
+      {/*</section>*/}
+
+
       <section className="story-section section-pad" id="story">
-        <div className="story-top"><Reveal><SectionHeading kicker="A LITTLE BIT OF MAGIC" title="The story of" italic="us."/><p className="story-intro">A thousand little moments led us here. These are a few of the ones we hold closest.</p></Reveal><Reveal delay={0.15}><img className="story-main-image" src="/assets/gallery12.jpg" alt="Illustrated placeholder for a couple's story photograph" loading="lazy"/><span className="image-caption">THE BEGINNING OF ALWAYS</span></Reveal></div>
-        <div className="timeline">
-          {[{ year: 'THE FIRST HELLO', title: 'A chance encounter', text: 'Somewhere between an ordinary day and an unexpected smile, our story found its first page.', side: 'left' }, { year: 'THE LITTLE THINGS', title: 'Falling into forever', text: 'In shared laughter, long conversations and all the quiet in-between, we found our favourite place: together.', side: 'right' }, { year: 'THE PROMISE', title: 'A beautiful yes', text: 'One promise, two families, and a lifetime of tomorrows waiting to unfold.', side: 'left' }].map((item, i) => <Reveal key={item.year} className={`timeline-item ${item.side}`} delay={i * 0.08}><span className="timeline-dot"/><p className="eyebrow">{item.year}</p><h3>{item.title}</h3><p>{item.text}</p></Reveal>)}
+        <div className="story-editorial">
+
+          {/* Editorial introduction */}
+          <Reveal className="story-editorial-copy">
+            <p className="eyebrow">A LITTLE BIT OF MAGIC</p>
+
+            <h2>
+              The story of
+              <br />
+              <em>us.</em>
+            </h2>
+
+            <span className="story-editorial-rule" />
+
+            <p className="story-intro">
+              A thousand little moments led us here. From the first hello
+              to the promises we make today, every little memory brought
+              us closer to forever.
+            </p>
+
+            <div className="story-signature">
+              <span>OUR JOURNEY, OUR FOREVER</span>
+              <span className="story-signature-mark">✳</span>
+            </div>
+          </Reveal>
+
+          {/* Main wedding photograph */}
+          <Reveal className="story-editorial-visual" delay={0.15}>
+            <div className="story-photo-frame">
+              <img
+                  className="story-main-image"
+                  src={wedding.storyImage}
+                  alt={`Wedding photograph of ${wedding.bride} and ${wedding.groom}`}
+                  loading="lazy"
+                  decoding="async"
+              />
+
+              <span className="story-photo-number">01 — A MEMORY TO KEEP</span>
+            </div>
+
+            <p className="image-caption">
+              THE BEGINNING OF ALWAYS
+            </p>
+          </Reveal>
+
+        </div>
+
+        {/* Wedding story timeline */}
+        <div className="story-timeline-heading">
+          <p className="eyebrow">CHAPTERS OF OUR LOVE</p>
+          <h3>Every moment brought us <em>here.</em></h3>
+        </div>
+
+        <div className="timeline editorial-timeline">
+          {[
+            {
+              year: 'THE FIRST HELLO',
+              title: 'A chance encounter',
+              text: 'Somewhere between an ordinary day and an unexpected smile, our story found its first page.',
+            },
+            {
+              year: 'THE LITTLE THINGS',
+              title: 'Falling into forever',
+              text: 'In shared laughter, long conversations and all the quiet in-between, we found our favourite place: together.',
+            },
+            {
+              year: 'THE PROMISE',
+              title: 'A beautiful yes',
+              text: 'One promise, two families, and a lifetime of tomorrows waiting to unfold.',
+            },
+          ].map((item, index) => (
+              <Reveal
+                  key={item.year}
+                  className="editorial-timeline-item"
+                  delay={index * 0.12}
+              >
+        <span className="timeline-number">
+          0{index + 1}
+        </span>
+
+                <p className="eyebrow">{item.year}</p>
+
+                <h3>{item.title}</h3>
+
+                <p>{item.text}</p>
+
+                <span className="timeline-small-rule" />
+              </Reveal>
+          ))}
         </div>
       </section>
+
 
       {/*<section className="gallery-section section-pad" id="gallery">*/}
       {/*  <Reveal><SectionHeading kicker="FRAMES WE'LL KEEP FOREVER" title="A collection of" italic="moments."/><p className="gallery-sub">A glimpse into the little world we’ve made together.</p></Reveal>*/}

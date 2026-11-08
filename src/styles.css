@@ -260,3 +260,337 @@
         transition: none;
     }
 }
+
+
+/* =========================================
+   LUXURY EDITORIAL LOVE STORY
+   ========================================= */
+
+.story-section {
+    background: #f4efe6;
+    padding: 125px max(7vw, 24px) 120px;
+    overflow: hidden;
+}
+
+/* Main editorial layout */
+
+.story-editorial {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    align-items: center;
+    gap: clamp(55px, 9vw, 120px);
+}
+
+.story-editorial-copy {
+    max-width: 390px;
+}
+
+.story-editorial-copy .eyebrow {
+    color: #a88755;
+    margin-bottom: 25px;
+}
+
+.story-editorial-copy h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(55px, 6.2vw, 82px);
+    font-weight: 400;
+    line-height: 1.13;
+    letter-spacing: -2px;
+    color: #302b25;
+    margin: 0;
+}
+
+.story-editorial-copy h2 em {
+    color: #a88755;
+    font-weight: 400;
+}
+
+.story-editorial-rule {
+    display: block;
+    width: 52px;
+    height: 1px;
+    background: #a88755;
+    margin: 32px 0 25px;
+}
+
+.story-editorial-copy .story-intro {
+    max-width: 330px;
+    color: #81786c;
+    font-size: 13px;
+    line-height: 2.1;
+    margin: 0;
+}
+
+.story-signature {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-top: 40px;
+    color: #a88755;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.story-signature-mark {
+    font-size: 17px;
+}
+
+/* Main photograph */
+
+.story-editorial-visual {
+    width: 100%;
+    min-width: 0;
+}
+
+.story-photo-frame {
+    position: relative;
+    width: 100%;
+    height: 520px;
+    background: #ebe3d8;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.story-main-image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    filter: saturate(.88);
+}
+
+.story-photo-number {
+    position: absolute;
+    left: 18px;
+    bottom: 17px;
+    color: #fff;
+    font-size: 8px;
+    letter-spacing: 2px;
+    text-shadow: 0 1px 5px rgba(0,0,0,.7);
+}
+
+.story-editorial-visual .image-caption {
+    text-align: right;
+    margin-top: 15px;
+    color: #a88755;
+    font-size: 8px;
+    letter-spacing: 2.2px;
+}
+
+/* Timeline heading */
+
+.story-timeline-heading {
+    max-width: 1100px;
+    margin: 145px auto 55px;
+    text-align: center;
+}
+
+.story-timeline-heading .eyebrow {
+    color: #a88755;
+    margin-bottom: 18px;
+}
+
+.story-timeline-heading h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(30px, 4vw, 45px);
+    font-weight: 400;
+    line-height: 1.3;
+    color: #302b25;
+    margin: 0;
+}
+
+.story-timeline-heading h3 em {
+    color: #a88755;
+    font-weight: 400;
+}
+
+/* Three-column editorial timeline */
+
+.editorial-timeline {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 45px;
+    position: relative;
+}
+
+.editorial-timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(104, 86, 62, .25);
+}
+
+.editorial-timeline-item {
+    position: relative;
+    padding: 35px 10px 10px 0;
+}
+
+.editorial-timeline-item::before {
+    content: '';
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 9px;
+    height: 9px;
+    background: #f4efe6;
+    border: 1px solid #a88755;
+    border-radius: 50%;
+}
+
+.timeline-number {
+    position: absolute;
+    right: 10px;
+    top: 30px;
+    color: rgba(168, 135, 85, .28);
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+}
+
+.editorial-timeline-item .eyebrow {
+    color: #a88755;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.editorial-timeline-item h3 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: clamp(23px, 2.5vw, 30px);
+    line-height: 1.3;
+    margin: 18px 0 13px;
+    color: #302b25;
+}
+
+.editorial-timeline-item > p:not(.eyebrow) {
+    color: #81786c;
+    font-size: 12px;
+    line-height: 2;
+    max-width: 300px;
+    margin: 0;
+}
+
+.timeline-small-rule {
+    display: block;
+    width: 30px;
+    height: 1px;
+    background: #a88755;
+    margin-top: 25px;
+}
+
+/* Tablet */
+
+@media (max-width: 900px) {
+    .story-editorial {
+        grid-template-columns: .85fr 1.15fr;
+        gap: 45px;
+    }
+
+    .story-photo-frame {
+        height: 430px;
+    }
+
+    .editorial-timeline {
+        gap: 25px;
+    }
+}
+
+/* Mobile */
+
+@media (max-width: 760px) {
+    .story-section {
+        padding: 90px 25px 90px;
+    }
+
+    .story-editorial {
+        grid-template-columns: 1fr;
+        gap: 38px;
+    }
+
+    .story-editorial-copy {
+        max-width: 100%;
+    }
+
+    .story-editorial-copy h2 {
+        font-size: 55px;
+    }
+
+    .story-editorial-copy .story-intro {
+        max-width: 390px;
+    }
+
+    .story-signature {
+        margin-top: 25px;
+    }
+
+    .story-photo-frame {
+        height: auto;
+        min-height: 300px;
+        max-height: 470px;
+        aspect-ratio: 4 / 5;
+    }
+
+    .story-main-image {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .story-timeline-heading {
+        margin: 95px auto 40px;
+        text-align: left;
+    }
+
+    .editorial-timeline {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-left: 25px;
+    }
+
+    .editorial-timeline::before {
+        top: 0;
+        bottom: 0;
+        left: 4px;
+        right: auto;
+        width: 1px;
+        height: auto;
+    }
+
+    .editorial-timeline-item {
+        padding: 8px 0 25px 20px;
+    }
+
+    .editorial-timeline-item::before {
+        top: 13px;
+        left: -25px;
+    }
+
+    .timeline-number {
+        right: 5px;
+        top: 0;
+        font-size: 28px;
+    }
+
+    .editorial-timeline-item h3 {
+        font-size: 27px;
+    }
+
+    .editorial-timeline-item > p:not(.eyebrow) {
+        max-width: 100%;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .story-main-image {
+        transition: none;
+    }
+}
