@@ -1,6 +1,6 @@
 const COOKIE_NAME = "wedding_access";
 // const SESSION_SECONDS = 60 * 60 * 24 * 7; // 7 days
-const SESSION_SECONDS = 60;
+const SESSION_SECONDS = 30;
 function base64Url(bytes) {
     let binary = "";
     for (const byte of bytes) binary += String.fromCharCode(byte);

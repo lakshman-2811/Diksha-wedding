@@ -19,6 +19,7 @@ export default function App() {
 
   useEffect(() => { document.body.style.overflow = activeImage !== null || videoOpen ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [activeImage, videoOpen]);
   useEffect(() => { if (activeImage === null) return; const onKey = (event: KeyboardEvent) => { if (event.key === 'Escape') setActiveImage(null); if (event.key === 'ArrowRight') setActiveImage(i => i === null ? null : (i + 1) % wedding.gallery.length); if (event.key === 'ArrowLeft') setActiveImage(i => i === null ? null : (i - 1 + wedding.gallery.length) % wedding.gallery.length); }; window.addEventListener('keydown', onKey); return () => window.removeEventListener('keydown', onKey); }, [activeImage]);
+
   useEffect(() => {
     const audio = document.getElementById(
         'background-audio'
@@ -26,22 +27,26 @@ export default function App() {
 
     if (!audio) return;
 
-    audio.volume = 0.5;
+    audio.volume = 1.0;
+    audio.load();
 
-    const tryPlay = () => {
+    const startMusic = () => {
       audio.play().catch(() => {
-        // Browser may block autoplay until visitor interacts.
+        setMusicOn(false);
       });
     };
 
-    tryPlay();
-
-    document.addEventListener('pointerdown', tryPlay, { once: true });
+    if (audio.readyState >= 2) {
+      startMusic();
+    } else {
+      audio.addEventListener('canplay', startMusic, { once: true });
+    }
 
     return () => {
-      document.removeEventListener('pointerdown', tryPlay);
+      audio.removeEventListener('canplay', startMusic);
     };
   }, []);
+
   const goTo = (id: string) => { setMenuOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); };
   const toggleMusic = async () => {
     const audio = document.getElementById('background-audio') as HTMLAudioElement | null;
