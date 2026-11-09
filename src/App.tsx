@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import WeddingCarousel from './components/WeddingCarousel';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, X, Volume2, VolumeX, Play, Menu } from 'lucide-react';
@@ -15,6 +15,7 @@ export default function App() {
   const [activeImage, setActiveImage] = useState<number | null>(null);
   const [musicOn, setMusicOn] = useState(false);
   const [videoOpen, setVideoOpen] = useState(false);
+  const wasMusicPlaying = useRef(false);
   const reduceMotion = useReducedMotion();
 
   useEffect(() => { document.body.style.overflow = activeImage !== null || videoOpen ? 'hidden' : ''; return () => { document.body.style.overflow = ''; }; }, [activeImage, videoOpen]);
@@ -46,6 +47,25 @@ export default function App() {
       audio.removeEventListener('canplay', startMusic);
     };
   }, []);
+
+  useEffect(() => {
+    const audio = document.getElementById(
+        'background-audio'
+    ) as HTMLAudioElement | null;
+
+    if (!audio) return;
+
+    if (videoOpen) {
+      wasMusicPlaying.current = !audio.paused;
+      audio.pause();
+    } else if (wasMusicPlaying.current) {
+      audio.play().catch(() => {
+        setMusicOn(false);
+      });
+
+      wasMusicPlaying.current = false;
+    }
+  }, [videoOpen]);
 
   const goTo = (id: string) => { setMenuOpen(false); document.getElementById(id)?.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth' }); };
   const toggleMusic = async () => {
